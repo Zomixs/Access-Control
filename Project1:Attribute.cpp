@@ -9,7 +9,17 @@ int main ()
 {
     std:srand(std::time(0));
 
-    int attributes[5] = {1,2,3,4,5};
+    int n;
+    
+    std::cout << "Enter Number Of Attributes:";
+    std::cin >> n;
+
+    std::vector<int> attributes;
+
+    for (int i = 1; i <= n; i++)
+    {
+        attributes.push_back(i);
+    }
 
     std::vector<std::set<int>> users;
 
@@ -17,11 +27,11 @@ int main ()
     {
         std::set<int> temp;
 
-        int num = 2 + std:: rand() %4;
+        int num = 2 + std:: rand() % (n -1);
         while (temp.size() < num)
         {
-            int r = attributes[std::rand() % 5];
-            temp.inset(r);
+            int r = attributes[std::rand() % n];
+            temp.insert(r);
         }
         bool duplicate = false;
 
@@ -29,7 +39,7 @@ int main ()
         {
             if (users[i] == temp)
             {
-                duplicate = true
+                duplicate = true;
             }
         }
         if (!duplicate)
@@ -37,23 +47,23 @@ int main ()
             users.push_back(temp);
         }
     }
-    std:: cout << "Generated Users: \n";
+    std::cout << "Generated Users:\n";
 
-    for int i = 0; i < users.size(); i++)
+    for (int i = 0; i < users.size(); i++)
     {
-        std:: cout << "User: " << i + 1 << ":";
+        std::cout << "User" << i + 1 << ": ";
 
         for (int attr : users[i])
         {
             std:: cout << attr << " ";
         }
-        std:: cout << "\n";
+        std::cout << "\n";
     }
     while (true)
     {
         int user;
 
-        std::cout << "Enter user number (1-10) or 0 to quit";
+        std::cout << "Enter User Number (1-10) or 0 to quit\n";
         std::cin >> user;
 
         if (user == 0)
@@ -61,24 +71,24 @@ int main ()
             break;
         }
         if (user < 1 || user > 10)
-        { std::cout << "Invalid user.\n"
+        { std::cout << "Invalid user.\n";
         continue;
     }
-    std::cout << "User attributes: "
+    std::cout << "User Attributes: ";
 
     for ( int attr : users[user - 1])
     {
-        std::cout << attr << "";
+        std::cout << attr << "  " ;
     }
     int a1, a2;
     std::string ope;
-     std::cout << "enter first attribute: ";
+     std::cout << "Enter First Attribute: ";
      std::cin >> a1;
 
-     std::cout << "enter operator (AND or OR): ";
+     std::cout << "Enter Operator (AND or OR): ";
      std::cin >> ope;
 
-     std::cout << "enter second attribute: ";
+     std::cout << "Enter Second Attribute: ";
      std::cin >> a2;
 
      bool has1 = users[user -1].count(a1);
@@ -96,7 +106,7 @@ int main ()
      }
      if (result)
      {
-        std::cout << "TRUE (Access Granted)\n"
+        std::cout << "TRUE (Access Granted)\n";
      }
      else
      {
