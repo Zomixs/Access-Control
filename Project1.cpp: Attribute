@@ -1,0 +1,107 @@
+#include <iostream>
+#include <vector>
+#include <set>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+
+int main ()
+{
+    std:srand(std::time(0));
+
+    int attributes[5] = {1,2,3,4,5};
+
+    std::vector<std::set<int>> users;
+
+    while (users.size() < 10)
+    {
+        std::set<int> temp;
+
+        int num = 2 + std:: rand() %4;
+        while (temp.size() < num)
+        {
+            int r = attributes[std::rand() % 5];
+            temp.inset(r);
+        }
+        bool duplicate = false;
+
+        for (int i = 0; i < users.size(); i++)
+        {
+            if (users[i] == temp)
+            {
+                duplicate = true
+            }
+        }
+        if (!duplicate)
+        {
+            users.push_back(temp);
+        }
+    }
+    std:: cout << "Generated Users: \n";
+
+    for int i = 0; i < users.size(); i++)
+    {
+        std:: cout << "User: " << i + 1 << ":";
+
+        for (int attr : users[i])
+        {
+            std:: cout << attr << " ";
+        }
+        std:: cout << "\n";
+    }
+    while (true)
+    {
+        int user;
+
+        std::cout << "Enter user number (1-10) or 0 to quit";
+        std::cin >> user;
+
+        if (user == 0)
+        {
+            break;
+        }
+        if (user < 1 || user > 10)
+        { std::cout << "Invalid user.\n"
+        continue;
+    }
+    std::cout << "User attributes: "
+
+    for ( int attr : users[user - 1])
+    {
+        std::cout << attr << "";
+    }
+    int a1, a2;
+    std::string ope;
+     std::cout << "enter first attribute: ";
+     std::cin >> a1;
+
+     std::cout << "enter operator (AND or OR): ";
+     std::cin >> ope;
+
+     std::cout << "enter second attribute: ";
+     std::cin >> a2;
+
+     bool has1 = users[user -1].count(a1);
+     bool has2 = users[user -1].count(a2);
+
+     bool result = false;
+
+     if (ope == "AND")
+     {
+        result = has1 && has2;
+     }
+     else if ( ope == "OR")
+     {
+        result = has1 || has2;
+     }
+     if (result)
+     {
+        std::cout << "TRUE (Access Granted)\n"
+     }
+     else
+     {
+        std::cout << "FALSE (Access Denided)\n";
+     }
+    }
+    return 0;
+}
